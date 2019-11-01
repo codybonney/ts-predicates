@@ -9,7 +9,8 @@ import {
     isArray,
     isEmptyArray,
     isNonEmptyArray,
-    isFunction
+    isFunction,
+    isNotFunction
 } from '../src';
 
 describe("boolean", () => {
@@ -355,5 +356,36 @@ describe("isFunction", () => {
 
     it("should return false for an undefined value", () => {
         expect(isFunction(undefined)).toBe(false);
+    });
+});
+
+describe("isNotFunction", () => {
+    it("should return false for a function value", () => {
+        expect(isNotFunction(() => {})).toBe(false);
+    });
+
+    it("should return true for an array value", () => {
+        expect(isNotFunction([])).toBe(true);
+        expect(isNotFunction([1,2,3])).toBe(true);
+    });
+
+    it("should return true for a null value", () => {
+        expect(isNotFunction(null)).toBe(true);
+    });
+
+    it("should return true for a string value", () => {
+        expect(isNotFunction('test')).toBe(true);
+    });
+
+    it("should return true for a number value", () => {
+        expect(isNotFunction(0)).toBe(true);
+    });
+
+    it("should return true for a boolean value", () => {
+        expect(isNotFunction(true)).toBe(true);
+    });
+
+    it("should return true for an undefined value", () => {
+        expect(isNotFunction(undefined)).toBe(true);
     });
 });

@@ -1,6 +1,7 @@
 import typeOf from 'typeof-util';
 
-/** return true if a given value is of type boolean
+/**
+ * return true if a given value is of type boolean
  *
  * examples:
  * isBoolean(true)  // true
@@ -97,3 +98,13 @@ export const isNonEmptyArray = value => typeOf(value) === 'array' && !!value.len
  * isFunction(() => {})  // true
  */
 export const isFunction = value => typeOf(value) === 'function';
+
+/**
+ * return true if a given value is not a function
+ *
+ * examples:
+ * isNotFunction(0)         // true
+ * isNotFunction(undefined) // true
+ * isNotFunction(() => {})  // false
+ */
+export const isNotFunction = value => typeOf(value) !== 'function';

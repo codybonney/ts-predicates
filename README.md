@@ -24,19 +24,21 @@ import {
     isArray,
     isEmptyArray,
     isNonEmptyArray,
-    isFunction
+    isFunction,
+    isNotFunction
  } from 'ts-predicates';
 
 ...
 
-isString('foo')       // true
-isBoolean({})         // false
-isDefined([])         // true
-isUndefined({})       // false
-isNull(null)          // true
-isObject({})          // true
-isArray([])           // true
-isEmptyArray([])      // true
-isNonEmptyArray([])   // false
-isFunction(() => {})  // true
+isString('foo')          // true
+isBoolean({})            // false
+isDefined([])            // true
+isUndefined({})          // false
+isNull(null)             // true
+isObject({})             // true
+isArray([])              // true
+isEmptyArray([])         // true
+isNonEmptyArray([])      // false
+isFunction(() => {})     // true
+isNotFunction(() => {})  // false
 ```

@@ -1,7 +1,7 @@
 {
   "name": "ts-predicates",
   "description": "A collection of predicate functions and utilities for creating new predicate functions in TypeScript",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/codybonney/ts-predicates",
   "author": "Cody Bonney (https://github.com/codybonney)",
   "contributors": [],
