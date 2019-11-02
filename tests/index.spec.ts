@@ -17,7 +17,7 @@ import {
 // arrays of values to be used as test case inputs
 const objects   = [{}, {'foo': 'bar'}];
 const arrays    = [[], [1,2,3]];
-const functions = [()=>{}];
+const functions = [() => {}];
 const strings   = ['foo', ''];
 const numbers   = [1, 3.14];
 const booleans  = [true, false];
@@ -31,7 +31,7 @@ const expects = expectedOutput => testFunction => (...testInputs) => {
     });
 };
 
-describe("boolean", () => {
+describe('isBoolean', () => {
     expects(true)(isBoolean)(...booleans);
     expects(false)(isBoolean)(
         ...objects,
@@ -44,7 +44,7 @@ describe("boolean", () => {
     );
 });
 
-describe("isString", () => {
+describe('isString', () => {
     expects(true)(isString)(...strings);
     expects(false)(isString)(
         ...objects,
@@ -57,7 +57,7 @@ describe("isString", () => {
     );
 });
 
-describe("isUndefined", () => {
+describe('isUndefined', () => {
     expects(true)(isUndefined)(undefined);
     expects(false)(isUndefined)(
         ...strings,
@@ -69,7 +69,7 @@ describe("isUndefined", () => {
     );
 });
 
-describe("isDefined", () => {
+describe('isDefined', () => {
     expects(true)(isDefined)(
         ...strings,
         ...objects,
@@ -81,7 +81,7 @@ describe("isDefined", () => {
     expects(false)(isDefined)(undefined);
 });
 
-describe("isNull", () => {
+describe('isNull', () => {
     expects(true)(isNull)(null);
     expects(false)(isNull)(
         ...strings,
@@ -93,7 +93,7 @@ describe("isNull", () => {
     );
 });
 
-describe("isObject", () => {
+describe('isObject', () => {
     expects(true)(isObject)(...objects);
     expects(false)(isObject)(
         ...strings,
@@ -105,7 +105,7 @@ describe("isObject", () => {
     );
 });
 
-describe("isArray", () => {
+describe('isArray', () => {
     expects(true)(isArray)(...arrays);
     expects(false)(isArray)(
         ...strings,
@@ -117,7 +117,7 @@ describe("isArray", () => {
     );
 });
 
-describe("isEmptyArray", () => {
+describe('isEmptyArray', () => {
     expects(true)(isEmptyArray)([]);
     expects(false)(isEmptyArray)(
         [1],
@@ -130,7 +130,7 @@ describe("isEmptyArray", () => {
     );
 });
 
-describe("isNonEmptyArray", () => {
+describe('isNonEmptyArray', () => {
     expects(true)(isNonEmptyArray)([1]);
     expects(false)(isNonEmptyArray)(
         [],
@@ -143,7 +143,7 @@ describe("isNonEmptyArray", () => {
     );
 });
 
-describe("isFunction", () => {
+describe('isFunction', () => {
     expects(true)(isFunction)(...functions);
     expects(false)(isFunction)(
         ...arrays,
@@ -155,7 +155,7 @@ describe("isFunction", () => {
     );
 });
 
-describe("isNotFunction", () => {
+describe('isNotFunction', () => {
     expects(true)(isNotFunction)(
         ...arrays,
         ...strings,
