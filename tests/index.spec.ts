@@ -74,7 +74,6 @@ describe("isUndefined", () => {
         ...objects(),
         ...arrays(),
         ...functions(),
-        ...strings(),
         ...numbers(),
         null
     );
@@ -86,7 +85,6 @@ describe("isDefined", () => {
         ...objects(),
         ...arrays(),
         ...functions(),
-        ...strings(),
         ...numbers(),
         null
     );
@@ -104,7 +102,6 @@ describe("isNull", () => {
         ...objects(),
         ...arrays(),
         ...functions(),
-        ...strings(),
         ...numbers(),
         undefined
     );
@@ -118,7 +115,6 @@ describe("isObject", () => {
         ...strings(),
         ...arrays(),
         ...functions(),
-        ...strings(),
         ...numbers(),
         undefined,
         null
@@ -133,7 +129,6 @@ describe("isArray", () => {
         ...strings(),
         ...objects(),
         ...functions(),
-        ...strings(),
         ...numbers(),
         undefined,
         null
@@ -149,7 +144,6 @@ describe("isEmptyArray", () => {
         ...strings(),
         ...objects(),
         ...functions(),
-        ...strings(),
         ...numbers(),
         undefined,
         null
@@ -165,7 +159,6 @@ describe("isNonEmptyArray", () => {
         ...strings(),
         ...objects(),
         ...functions(),
-        ...strings(),
         ...numbers(),
         undefined,
         null
@@ -180,7 +173,6 @@ describe("isFunction", () => {
         ...arrays(),
         ...strings(),
         ...objects(),
-        ...strings(),
         ...numbers(),
         undefined,
         null
@@ -192,7 +184,6 @@ describe("isNotFunction", () => {
         ...arrays(),
         ...strings(),
         ...objects(),
-        ...strings(),
         ...numbers(),
         undefined,
         null
