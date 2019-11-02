@@ -14,7 +14,7 @@ import {
     isNotFunction
 } from '../src';
 
-// arrays of values to be used as test inputs
+// arrays of values to be used as test case inputs
 const objects   = [{}, {'foo': 'bar'}];
 const arrays    = [[], [1,2,3]];
 const functions = [()=>{}];
@@ -22,22 +22,18 @@ const strings   = ['foo', ''];
 const numbers   = [1, 3.14];
 const booleans  = [true, false];
 
-// utility functions for generating test cases
-const tests = expectedOutput => testFunction => (...testInputs) => {
+// utility for generating test cases
+const expects = expectedOutput => testFunction => (...testInputs) => {
     testInputs.forEach(testInput => {
         it(`should return ${expectedOutput} for ${typeOf(testInput)} values`, () => {
             expect(testFunction(testInput)).toBe(expectedOutput);
         });
     });
 };
-const expectTrue = tests(true);
-const expectFalse = tests(false);
 
 describe("boolean", () => {
-    expectTrue(isBoolean)(
-        ...booleans
-    );
-    expectFalse(isBoolean)(
+    expects(true)(isBoolean)(...booleans);
+    expects(false)(isBoolean)(
         ...objects,
         ...arrays,
         ...functions,
@@ -49,10 +45,8 @@ describe("boolean", () => {
 });
 
 describe("isString", () => {
-    expectTrue(isString)(
-        ...strings
-    );
-    expectFalse(isString)(
+    expects(true)(isString)(...strings);
+    expects(false)(isString)(
         ...objects,
         ...arrays,
         ...functions,
@@ -64,10 +58,8 @@ describe("isString", () => {
 });
 
 describe("isUndefined", () => {
-    expectTrue(isUndefined)(
-        undefined
-    );
-    expectFalse(isUndefined)(
+    expects(true)(isUndefined)(undefined);
+    expects(false)(isUndefined)(
         ...strings,
         ...objects,
         ...arrays,
@@ -78,7 +70,7 @@ describe("isUndefined", () => {
 });
 
 describe("isDefined", () => {
-    expectTrue(isDefined)(
+    expects(true)(isDefined)(
         ...strings,
         ...objects,
         ...arrays,
@@ -86,16 +78,12 @@ describe("isDefined", () => {
         ...numbers,
         null
     );
-    expectFalse(isDefined)(
-        undefined
-    );
+    expects(false)(isDefined)(undefined);
 });
 
 describe("isNull", () => {
-    expectTrue(isNull)(
-        null
-    );
-    expectFalse(isNull)(
+    expects(true)(isNull)(null);
+    expects(false)(isNull)(
         ...strings,
         ...objects,
         ...arrays,
@@ -106,10 +94,8 @@ describe("isNull", () => {
 });
 
 describe("isObject", () => {
-    expectTrue(isObject)(
-        ...objects
-    );
-    expectFalse(isObject)(
+    expects(true)(isObject)(...objects);
+    expects(false)(isObject)(
         ...strings,
         ...arrays,
         ...functions,
@@ -120,10 +106,8 @@ describe("isObject", () => {
 });
 
 describe("isArray", () => {
-    expectTrue(isArray)(
-        ...arrays
-    );
-    expectFalse(isArray)(
+    expects(true)(isArray)(...arrays);
+    expects(false)(isArray)(
         ...strings,
         ...objects,
         ...functions,
@@ -134,10 +118,8 @@ describe("isArray", () => {
 });
 
 describe("isEmptyArray", () => {
-    expectTrue(isEmptyArray)(
-        []
-    );
-    expectFalse(isEmptyArray)(
+    expects(true)(isEmptyArray)([]);
+    expects(false)(isEmptyArray)(
         [1],
         ...strings,
         ...objects,
@@ -149,10 +131,8 @@ describe("isEmptyArray", () => {
 });
 
 describe("isNonEmptyArray", () => {
-    expectTrue(isNonEmptyArray)(
-        [1]
-    );
-    expectFalse(isNonEmptyArray)(
+    expects(true)(isNonEmptyArray)([1]);
+    expects(false)(isNonEmptyArray)(
         [],
         ...strings,
         ...objects,
@@ -164,10 +144,8 @@ describe("isNonEmptyArray", () => {
 });
 
 describe("isFunction", () => {
-    expectTrue(isFunction)(
-        ...functions,
-    );
-    expectFalse(isFunction)(
+    expects(true)(isFunction)(...functions);
+    expects(false)(isFunction)(
         ...arrays,
         ...strings,
         ...objects,
@@ -178,7 +156,7 @@ describe("isFunction", () => {
 });
 
 describe("isNotFunction", () => {
-    expectTrue(isNotFunction)(
+    expects(true)(isNotFunction)(
         ...arrays,
         ...strings,
         ...objects,
@@ -186,7 +164,5 @@ describe("isNotFunction", () => {
         undefined,
         null
     );
-    expectFalse(isNotFunction)(
-        ...functions
-    );
+    expects(false)(isNotFunction)(...functions);
 });
