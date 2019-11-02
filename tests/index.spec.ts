@@ -14,26 +14,24 @@ import {
     isNotFunction
 } from '../src';
 
-/**
- * Utility function for generating test cases for a given set of inputs
- */
-const returns = expectedOutput => testFunction => (...testInputs) => {
+// utility functions that each return an array of values
+const objects   = () => [{}, {'foo': 'bar'}];
+const arrays    = () => [[], [1,2,3]];
+const functions = () => [()=>{}];
+const strings   = () => ['foo', ''];
+const numbers   = () => [1, 3.14];
+const booleans  = () => [true, false];
+
+// utility functions for generating test cases
+const tests = expectedOutput => testFunction => (...testInputs) => {
     testInputs.forEach(testInput => {
         it(`should return ${expectedOutput} for ${typeOf(testInput)} values`, () => {
             expect(testFunction(testInput)).toBe(expectedOutput);
         });
     });
 };
-const expectTrue = returns(true);
-const expectFalse = returns(false);
-
-// utility functions that each return an array of values
-const objects   = () => [{}, {'foo': 'bar'}];
-const arrays    = () => [[], [1,2,3]];
-const functions = () => [()=>{}];
-const strings   = () => ['foo', ''];
-const numbers   = () => [1];
-const booleans  = () => [true, false];
+const expectTrue = tests(true);
+const expectFalse = tests(false);
 
 describe("boolean", () => {
     expectTrue(isBoolean)(
