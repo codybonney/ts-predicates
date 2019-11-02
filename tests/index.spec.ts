@@ -1,13 +1,18 @@
 import 'jasmine';
 import typeOf from 'typeof-util';
 import {
-    isString,
     isBoolean,
+    isNotBoolean,
+    isString,
+    isNotString,
     isDefined,
-    isNull,
     isUndefined,
+    isNull,
+    isNotNull,
     isObject,
+    isNotObject,
     isArray,
+    isNotArray,
     isEmptyArray,
     isNonEmptyArray,
     isFunction,
@@ -44,6 +49,19 @@ describe('isBoolean', () => {
     );
 });
 
+describe('isNotBoolean', () => {
+    expects(false)(isNotBoolean)(...booleans);
+    expects(true)(isNotBoolean)(
+        ...objects,
+        ...arrays,
+        ...functions,
+        ...strings,
+        ...numbers,
+        undefined,
+        null
+    );
+});
+
 describe('isString', () => {
     expects(true)(isString)(...strings);
     expects(false)(isString)(
@@ -57,14 +75,15 @@ describe('isString', () => {
     );
 });
 
-describe('isUndefined', () => {
-    expects(true)(isUndefined)(undefined);
-    expects(false)(isUndefined)(
-        ...strings,
+describe('isNotString', () => {
+    expects(false)(isNotString)(...strings);
+    expects(true)(isNotString)(
         ...objects,
         ...arrays,
         ...functions,
+        ...booleans,
         ...numbers,
+        undefined,
         null
     );
 });
@@ -81,9 +100,33 @@ describe('isDefined', () => {
     expects(false)(isDefined)(undefined);
 });
 
+describe('isUndefined', () => {
+    expects(true)(isUndefined)(undefined);
+    expects(false)(isUndefined)(
+        ...strings,
+        ...objects,
+        ...arrays,
+        ...functions,
+        ...numbers,
+        null
+    );
+});
+
 describe('isNull', () => {
     expects(true)(isNull)(null);
     expects(false)(isNull)(
+        ...strings,
+        ...objects,
+        ...arrays,
+        ...functions,
+        ...numbers,
+        undefined
+    );
+});
+
+describe('isNotNull', () => {
+    expects(false)(isNotNull)(null);
+    expects(true)(isNotNull)(
         ...strings,
         ...objects,
         ...arrays,
@@ -105,9 +148,33 @@ describe('isObject', () => {
     );
 });
 
+describe('isNotObject', () => {
+    expects(false)(isNotObject)(...objects);
+    expects(true)(isNotObject)(
+        ...strings,
+        ...arrays,
+        ...functions,
+        ...numbers,
+        undefined,
+        null
+    );
+});
+
 describe('isArray', () => {
     expects(true)(isArray)(...arrays);
     expects(false)(isArray)(
+        ...strings,
+        ...objects,
+        ...functions,
+        ...numbers,
+        undefined,
+        null
+    );
+});
+
+describe('isNotArray', () => {
+    expects(false)(isNotArray)(...arrays);
+    expects(true)(isNotArray)(
         ...strings,
         ...objects,
         ...functions,
@@ -156,6 +223,7 @@ describe('isFunction', () => {
 });
 
 describe('isNotFunction', () => {
+    expects(false)(isNotFunction)(...functions);
     expects(true)(isNotFunction)(
         ...arrays,
         ...strings,
@@ -164,5 +232,4 @@ describe('isNotFunction', () => {
         undefined,
         null
     );
-    expects(false)(isNotFunction)(...functions);
 });

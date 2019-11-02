@@ -15,13 +15,18 @@ npm install ts-predicates
 ### Usage:
 ```
 import { 
-    isString, 
-    isBoolean, 
-    isDefined, 
-    isUndefined, 
-    isNull, 
+    isBoolean,
+    isNotBoolean,
+    isString,
+    isNotString,
+    isDefined,
+    isUndefined,
+    isNull,
+    isNotNull,
     isObject,
+    isNotObject,
     isArray,
+    isNotArray,
     isEmptyArray,
     isNonEmptyArray,
     isFunction,
@@ -29,14 +34,18 @@ import {
  } from 'ts-predicates';
 
 ...
-
-isString('foo')          // true
 isBoolean({})            // false
+isNotBoolean({})         // true
+isString('foo')          // true
+isNotString('foo')       // false
 isDefined([])            // true
 isUndefined({})          // false
 isNull(null)             // true
+isNotNull(null)          // false
 isObject({})             // true
+isNotObject({})          // false
 isArray([])              // true
+isNotArray([])           // false
 isEmptyArray([])         // true
 isNonEmptyArray([])      // false
 isFunction(() => {})     // true

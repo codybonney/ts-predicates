@@ -11,6 +11,17 @@ import typeOf from 'typeof-util';
 export const isBoolean = value => typeOf(value) === 'boolean';
 
 /**
+ * return true if a given value is not of type boolean
+ *
+ * examples:
+ * isNotBoolean(true)  // false
+ * isNotBoolean(false) // false
+ * isNotBoolean('no')  // true
+ */
+export const isNotBoolean = value => typeOf(value) !== 'boolean';
+
+
+/**
  * return true if a given value is of type string
  *
  * examples:
@@ -20,13 +31,13 @@ export const isBoolean = value => typeOf(value) === 'boolean';
 export const isString = value => typeOf(value) === 'string';
 
 /**
- * return true if a given value is of type undefined
+ * return true if a given value is not of type string
  *
  * examples:
- * isUndefined(0)         // false
- * isUndefined(undefined) // true
+ * isNotString(5)     // true
+ * isNotString('yes') // false
  */
-export const isUndefined = value => typeOf(value) === 'undefined';
+export const isNotString = value => typeOf(value) !== 'string';
 
 /**
  * return true if a given value is not of type undefined
@@ -36,6 +47,15 @@ export const isUndefined = value => typeOf(value) === 'undefined';
  * isDefined(undefined) // false
  */
 export const isDefined = value => typeOf(value) !== 'undefined';
+
+/**
+ * return true if a given value is of type undefined
+ *
+ * examples:
+ * isUndefined(0)         // false
+ * isUndefined(undefined) // true
+ */
+export const isUndefined = value => typeOf(value) === 'undefined';
 
 /**
  * return true if a given value is of type null
@@ -48,7 +68,17 @@ export const isDefined = value => typeOf(value) !== 'undefined';
 export const isNull = value => typeOf(value) === 'null';
 
 /**
- * return true if a given value is an object
+ * return true if a given value is not of type null
+ *
+ * examples:
+ * isNotNull(0)         // true
+ * isNotNull(undefined) // true
+ * isNotNull(null)      // false
+ */
+export const isNotNull = value => typeOf(value) !== 'null';
+
+/**
+ * return true if a given value is of type object
  *
  * examples:
  * isObject(0)         // false
@@ -58,7 +88,17 @@ export const isNull = value => typeOf(value) === 'null';
 export const isObject = value => typeOf(value) === 'object';
 
 /**
- * return true if a given value is an array
+ * return true if a given value is not of type object
+ *
+ * examples:
+ * isNotObject(0)         // true
+ * isNotObject(undefined) // true
+ * isNotObject({})        // false
+ */
+export const isNotObject = value => typeOf(value) !== 'object';
+
+/**
+ * return true if a given value is of type array
  *
  * examples:
  * isArray(0)         // false
@@ -66,6 +106,16 @@ export const isObject = value => typeOf(value) === 'object';
  * isArray([])        // true
  */
 export const isArray = value => typeOf(value) === 'array';
+
+/**
+ * return true if a given value is not of type array
+ *
+ * examples:
+ * isNotArray(0)         // true
+ * isNotArray(undefined) // true
+ * isNotArray([])        // false
+ */
+export const isNotArray = value => typeOf(value) !== 'array';
 
 /**
  * return true if a given value is an empty array
