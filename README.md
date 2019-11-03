@@ -13,7 +13,7 @@ npm install ts-predicates
 ```
 
 ### Usage:
-```
+```javascript
 import { 
     isBoolean,
     isNotBoolean,
@@ -33,7 +33,8 @@ import {
     isNotFunction
  } from 'ts-predicates';
 
-...
+// ...
+
 isBoolean({})            // false
 isNotBoolean({})         // true
 isString('foo')          // true
