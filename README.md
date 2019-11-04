@@ -36,7 +36,8 @@ import {
     isTruthy,
     isFalsy,
     isDate,
-    isRegExp
+    isRegExp,
+    isEqual
  } from 'ts-predicates';
 
 // ...
@@ -63,4 +64,5 @@ isTruthy(1)               // true
 isFalsy(0)                // true
 isDate(new Date())        // true
 isRegExp(new RegExp(''))  // true
+isEqual(1)(1)             // true
 ```
