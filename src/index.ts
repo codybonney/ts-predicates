@@ -198,3 +198,23 @@ export const isTruthy = value => !!value;
  * isFalsy(1)         // false
  */
 export const isFalsy = value => !value;
+
+/**
+ * return true if a given value is of type Date
+ *
+ * examples:
+ * isDate(0)           // false
+ * isDate(undefined)   // false
+ * isDate(new Date())  // true
+ */
+export const isDate = (value): value is Date => value instanceof Date;
+
+/**
+ * return true if a given value is of type RegExp
+ *
+ * examples:
+ * isRegExp(0)             // false
+ * isRegExp(undefined)     // false
+ * isRegExp(new RegExp())  // true
+ */
+export const isRegExp = (value): value is RegExp => value instanceof RegExp;

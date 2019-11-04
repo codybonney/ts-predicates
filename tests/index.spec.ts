@@ -20,7 +20,9 @@ import {
     isTrue,
     isFalse,
     isTruthy,
-    isFalsy
+    isFalsy,
+    isDate,
+    isRegExp
 } from '../src';
 
 // arrays of values to be used as test case inputs
@@ -308,3 +310,30 @@ describe('isFalsy', () => {
     );
 });
 
+describe('isDate', () => {
+    expects(true)(isDate)(new Date());
+    expects(false)(isDate)(
+        ...arrays,
+        ...strings,
+        ...objects,
+        ...functions,
+        ...booleans,
+        ...numbers,
+        undefined,
+        null
+    );
+});
+
+describe('isRegExp', () => {
+    expects(true)(isRegExp)(new RegExp(''));
+    expects(false)(isRegExp)(
+        ...arrays,
+        ...strings,
+        ...objects,
+        ...functions,
+        ...booleans,
+        ...numbers,
+        undefined,
+        null
+    );
+});
