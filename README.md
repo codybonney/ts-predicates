@@ -30,7 +30,9 @@ import {
     isEmptyArray,
     isNonEmptyArray,
     isFunction,
-    isNotFunction
+    isNotFunction,
+    isTrue,
+    isFalse
  } from 'ts-predicates';
 
 // ...
@@ -51,4 +53,6 @@ isEmptyArray([])         // true
 isNonEmptyArray([])      // false
 isFunction(() => {})     // true
 isNotFunction(() => {})  // false
+isTrue(1)                // false
+isFalse(false)           // true
 ```

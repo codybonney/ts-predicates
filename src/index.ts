@@ -158,3 +158,23 @@ export const isFunction = value => typeOf(value) === 'function';
  * isNotFunction(() => {})  // false
  */
 export const isNotFunction = value => typeOf(value) !== 'function';
+
+/**
+ * return true if a given value is true
+ *
+ * examples:
+ * isTrue(0)         // false
+ * isTrue(undefined) // false
+ * isTrue(true)      // true
+ */
+export const isTrue = value => value === true;
+
+/**
+ * return true if a given value is false
+ *
+ * examples:
+ * isFalse(0)         // false
+ * isFalse(undefined) // false
+ * isFalse(false)  // true
+ */
+export const isFalse = value => value === false;

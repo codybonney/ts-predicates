@@ -16,7 +16,9 @@ import {
     isEmptyArray,
     isNonEmptyArray,
     isFunction,
-    isNotFunction
+    isNotFunction,
+    isTrue,
+    isFalse
 } from '../src';
 
 // arrays of values to be used as test case inputs
@@ -95,6 +97,7 @@ describe('isDefined', () => {
         ...arrays,
         ...functions,
         ...numbers,
+        ...booleans,
         null
     );
     expects(false)(isDefined)(undefined);
@@ -108,6 +111,7 @@ describe('isUndefined', () => {
         ...arrays,
         ...functions,
         ...numbers,
+        ...booleans,
         null
     );
 });
@@ -120,6 +124,7 @@ describe('isNull', () => {
         ...arrays,
         ...functions,
         ...numbers,
+        ...booleans,
         undefined
     );
 });
@@ -132,6 +137,7 @@ describe('isNotNull', () => {
         ...arrays,
         ...functions,
         ...numbers,
+        ...booleans,
         undefined
     );
 });
@@ -143,6 +149,7 @@ describe('isObject', () => {
         ...arrays,
         ...functions,
         ...numbers,
+        ...booleans,
         undefined,
         null
     );
@@ -155,6 +162,7 @@ describe('isNotObject', () => {
         ...arrays,
         ...functions,
         ...numbers,
+        ...booleans,
         undefined,
         null
     );
@@ -167,6 +175,7 @@ describe('isArray', () => {
         ...objects,
         ...functions,
         ...numbers,
+        ...booleans,
         undefined,
         null
     );
@@ -179,6 +188,7 @@ describe('isNotArray', () => {
         ...objects,
         ...functions,
         ...numbers,
+        ...booleans,
         undefined,
         null
     );
@@ -192,6 +202,7 @@ describe('isEmptyArray', () => {
         ...objects,
         ...functions,
         ...numbers,
+        ...booleans,
         undefined,
         null
     );
@@ -205,6 +216,7 @@ describe('isNonEmptyArray', () => {
         ...objects,
         ...functions,
         ...numbers,
+        ...booleans,
         undefined,
         null
     );
@@ -217,6 +229,7 @@ describe('isFunction', () => {
         ...strings,
         ...objects,
         ...numbers,
+        ...booleans,
         undefined,
         null
     );
@@ -229,7 +242,34 @@ describe('isNotFunction', () => {
         ...strings,
         ...objects,
         ...numbers,
+        ...booleans,
         undefined,
         null
+    );
+});
+
+describe('isTrue', () => {
+    expects(true)(isTrue)(true);
+    expects(false)(isTrue)(
+        ...arrays,
+        ...strings,
+        ...objects,
+        ...numbers,
+        undefined,
+        null,
+        false
+    );
+});
+
+describe('isFalse', () => {
+    expects(true)(isFalse)(false);
+    expects(false)(isFalse)(
+        ...arrays,
+        ...strings,
+        ...objects,
+        ...numbers,
+        undefined,
+        null,
+        true
     );
 });
