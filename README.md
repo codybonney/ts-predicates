@@ -32,7 +32,9 @@ import {
     isFunction,
     isNotFunction,
     isTrue,
-    isFalse
+    isFalse,
+    isTruthy,
+    isFalsy
  } from 'ts-predicates';
 
 // ...
@@ -55,4 +57,6 @@ isFunction(() => {})     // true
 isNotFunction(() => {})  // false
 isTrue(1)                // false
 isFalse(false)           // true
+isTruthy(1)              // true
+isFalsy(0)               // true
 ```

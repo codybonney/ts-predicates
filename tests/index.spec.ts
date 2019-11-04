@@ -18,7 +18,9 @@ import {
     isFunction,
     isNotFunction,
     isTrue,
-    isFalse
+    isFalse,
+    isTruthy,
+    isFalsy
 } from '../src';
 
 // arrays of values to be used as test case inputs
@@ -273,3 +275,36 @@ describe('isFalse', () => {
         true
     );
 });
+
+describe('isTruthy', () => {
+    expects(true)(isTruthy)(
+        {},
+        true,
+        1,
+        'string'
+    );
+    expects(false)(isTruthy)(
+        '',
+        0,
+        undefined,
+        null,
+        false
+    );
+});
+
+describe('isFalsy', () => {
+    expects(false)(isFalsy)(
+        true,
+        1,
+        'string',
+        {}
+    );
+    expects(true)(isFalsy)(
+        '',
+        0,
+        undefined,
+        null,
+        false
+    );
+});
+

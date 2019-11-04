@@ -178,3 +178,23 @@ export const isTrue = value => value === true;
  * isFalse(false)  // true
  */
 export const isFalse = value => value === false;
+
+/**
+ * return true if a given value is truthy
+ *
+ * examples:
+ * isTruthy(0)         // false
+ * isTruthy(undefined) // false
+ * isTruthy(1)         // true
+ */
+export const isTruthy = value => !!value;
+
+/**
+ * return true if a given value is falsy
+ *
+ * examples:
+ * isFalsy(0)         // true
+ * isFalsy(undefined) // true
+ * isFalsy(1)         // false
+ */
+export const isFalsy = value => !value;
