@@ -268,18 +268,18 @@ export const isEqual = a => b => {
         return false;
     }
     if (isArray(a) && isArray(b)) {
-        if (!isEqual(a.length)(b.length)) {
+        if (isNotEqual(a.length)(b.length)) {
             return false;
         }
         for (let i = a.length; i-- !== 0;) {
-            if (!isEqual(a[i])(b[i])) {
+            if (isNotEqual(a[i])(b[i])) {
                 return false;
             }
         }
         return true;
     }
     if (isObject(a) && isObject(b)) {
-        if (!isEqual(Object.keys(a).length)(Object.keys(b).length)) {
+        if (isNotEqual(Object.keys(a).length)(Object.keys(b).length)) {
             return false;
         }
         for (let i = Object.keys(a).length; i-- !== 0;) {
@@ -289,7 +289,7 @@ export const isEqual = a => b => {
         }
         for (let i = Object.keys(a).length; i-- !== 0;) {
             let key = Object.keys(a)[i];
-            if (!isEqual(a[key])(b[key])) {
+            if (isNotEqual(a[key])(b[key])) {
                 return false;
             }
         }
@@ -297,3 +297,14 @@ export const isEqual = a => b => {
     }
     return a !== a && b !== b;
 };
+
+/**
+ * return true if a given value does not deeply equal another value.
+ *
+ * examples:
+ * isEqual(0)(1)            // true
+ * isEqual([1])([1])        // false
+ * isEqual({ a: { b: 1 }})
+ *        ({ a: { b: 2 }})  // true
+ */
+export const isNotEqual = a => b => !isEqual(a)(b);

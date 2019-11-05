@@ -39,7 +39,8 @@ import {
     isNotDate,
     isRegExp,
     isNotRegExp,
-    isEqual
+    isEqual,
+    isNotEqual
  } from 'ts-predicates';
 
 // ...
@@ -69,4 +70,5 @@ isNotDate(new Date())        // false
 isRegExp(new RegExp(''))     // true
 isNotRegExp(new RegExp(''))  // false
 isEqual(1)(1)                // true
+isNotEqual({a: 1})({})       // true
 ```

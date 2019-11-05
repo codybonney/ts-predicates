@@ -25,7 +25,8 @@ import {
     isNotDate,
     isRegExp,
     isNotRegExp,
-    isEqual
+    isEqual,
+    isNotEqual
 } from '../src';
 
 // arrays of values to be used as test case inputs
@@ -443,4 +444,79 @@ describe('isEqual', () => {
     expects(false)(isEqual(new Date('Mon Nov 04 2019 11:00:00 GMT-0700')))('Mon Nov 04 2019 11:00:00 GMT-0700', {});
     expects(false)(isEqual(/foo/))(/bar/, /foo/i, 'foo', {});
     expects(false)(isEqual(emptyFunction))(()=>{});
+});
+
+describe('isNotEqual', () => {
+    expects(false)(isNotEqual(0))(-0);
+    expects(false)(isNotEqual(1))(1);
+    expects(false)(isNotEqual('1'))('1');
+    expects(false)(isNotEqual([]))([]);
+    expects(false)(isNotEqual([{}, {a: 1}]))([{}, {a: 1}]);
+    expects(false)(isNotEqual([1,2,3]))([1,2,3]);
+    expects(false)(isNotEqual({}))({});
+    expects(false)(isNotEqual({a: 1, b: 2}))({a: 1, b: 2}, {b: 2, a: 1});
+    expects(false)(isNotEqual({a: [ { foo: 'bar' }]}))({a: [ { foo: 'bar' }]});
+    expects(false)(isNotEqual(null))(null);
+    expects(false)(isNotEqual(true))(true);
+    expects(false)(isNotEqual(false))(false);
+    expects(false)(isNotEqual(NaN))(NaN);
+    expects(false)(isNotEqual(Infinity))(Infinity);
+    expects(false)(isNotEqual(new Date('Mon Nov 04 2019 11:00:00 GMT-0700')))(new Date('Mon Nov 04 2019 11:00:00 GMT-0700'));
+    expects(false)(isNotEqual(/foo/))(/foo/);
+    expects(false)(isNotEqual(emptyFunction))(emptyFunction);
+    expects(false)(isNotEqual({
+        a: 'a',
+        b: [ { a: 1 } ],
+        c: 'c',
+        d: {
+            a2: 'a2',
+            b2: {
+                a3: 'a3',
+                b3: [1, '2', { a: 1, b: [ 1 ] }, 4, 5],
+                c3: { a: 1 }
+            }
+        },
+        e: 1,
+        f: new Date(2019, 11),
+        g: new RegExp(/foo/)
+    }))({
+        g: new RegExp(/foo/),
+        c: 'c',
+        f: new Date(2019, 11),
+        b: [ { a: 1 } ],
+        e: 1,
+        a: 'a',
+        d: {
+            b2: {
+                b3: [1, '2', { a: 1, b: [ 1 ] }, 4, 5],
+                c3: { a: 1 },
+                a3: 'a3'
+            },
+            a2: 'a2'
+        },
+    });
+
+    expects(true)(isNotEqual(0))(null, false);
+    expects(true)(isNotEqual(1))(2, true, []);
+    expects(true)(isNotEqual([]))({});
+    expects(true)(isNotEqual([1, 2]))([1, 2, 3]);
+    expects(true)(isNotEqual([{}, {a: 1}]))([{}, {a: 2}]);
+    expects(true)(isNotEqual([1, 2, 3]))([1, 2, 4]);
+    expects(true)(isNotEqual({a: 1, b: '2'}))({a: 1, b: '2', c: '3'}, {a: 1, c: '2'});
+    expects(true)(isNotEqual({a: [ { foo: 'bar' }]}))({a: [ { bar: 'foo' }]});
+    expects(true)(isNotEqual({a: undefined}))({});
+    expects(true)(isNotEqual({'0': 0, '1': 1, '2': 2, length: 3}))([0, 1, 2]);
+    expects(true)(isNotEqual({}))({ a: undefined });
+    expects(true)(isNotEqual({ a: undefined }))({ b: undefined });
+    expects(true)(isNotEqual(''))(null);
+    expects(true)(isNotEqual('foo'))('bar');
+    expects(true)(isNotEqual(null))(false, {}, undefined, []);
+    expects(true)(isNotEqual(undefined))({}, null, []);
+    expects(true)(isNotEqual(true))(false, {}, undefined, []);
+    expects(true)(isNotEqual(false))(true);
+    expects(true)(isNotEqual(Infinity))(-Infinity);
+    expects(true)(isNotEqual(new Date('Mon Nov 04 2019 11:00:00 GMT-0700')))(new Date('Mon Nov 04 2019 12:00:00 GMT-0700'));
+    expects(true)(isNotEqual(new Date('Mon Nov 04 2019 11:00:00 GMT-0700')))('Mon Nov 04 2019 11:00:00 GMT-0700', {});
+    expects(true)(isNotEqual(/foo/))(/bar/, /foo/i, 'foo', {});
+    expects(true)(isNotEqual(emptyFunction))(()=>{});
 });
