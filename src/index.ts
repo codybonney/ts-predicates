@@ -210,6 +210,16 @@ export const isFalsy = value => !value;
 export const isDate = (value): value is Date => value instanceof Date;
 
 /**
+ * return true if a given value is not of type Date
+ *
+ * examples:
+ * isNotDate(0)           // true
+ * isNotDate(undefined)   // true
+ * isNotDate(new Date())  // false
+ */
+export const isNotDate = value => !(value instanceof Date);
+
+/**
  * return true if a given value is of type RegExp
  *
  * examples:
@@ -218,6 +228,16 @@ export const isDate = (value): value is Date => value instanceof Date;
  * isRegExp(new RegExp())  // true
  */
 export const isRegExp = (value): value is RegExp => value instanceof RegExp;
+
+/**
+ * return true if a given value is not of type RegExp
+ *
+ * examples:
+ * isRegExp(0)             // false
+ * isRegExp(undefined)     // false
+ * isRegExp(new RegExp())  // true
+ */
+export const isNotRegExp = value => !(value instanceof RegExp);
 
 /**
  * return true if a given value deeply equals another value.

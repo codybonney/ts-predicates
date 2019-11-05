@@ -36,33 +36,37 @@ import {
     isTruthy,
     isFalsy,
     isDate,
+    isNotDate,
     isRegExp,
+    isNotRegExp,
     isEqual
  } from 'ts-predicates';
 
 // ...
 
-isBoolean({})             // false
-isNotBoolean({})          // true
-isString('foo')           // true
-isNotString('foo')        // false
-isDefined([])             // true
-isUndefined({})           // false
-isNull(null)              // true
-isNotNull(null)           // false
-isObject({})              // true
-isNotObject({})           // false
-isArray([])               // true
-isNotArray([])            // false
-isEmptyArray([])          // true
-isNonEmptyArray([])       // false
-isFunction(() => {})      // true
-isNotFunction(() => {})   // false
-isTrue(1)                 // false
-isFalse(false)            // true
-isTruthy(1)               // true
-isFalsy(0)                // true
-isDate(new Date())        // true
-isRegExp(new RegExp(''))  // true
-isEqual(1)(1)             // true
+isBoolean({})                // false
+isNotBoolean({})             // true
+isString('foo')              // true
+isNotString('foo')           // false
+isDefined([])                // true
+isUndefined({})              // false
+isNull(null)                 // true
+isNotNull(null)              // false
+isObject({})                 // true
+isNotObject({})              // false
+isArray([])                  // true
+isNotArray([])               // false
+isEmptyArray([])             // true
+isNonEmptyArray([])          // false
+isFunction(() => {})         // true
+isNotFunction(() => {})      // false
+isTrue(1)                    // false
+isFalse(false)               // true
+isTruthy(1)                  // true
+isFalsy(0)                   // true
+isDate(new Date())           // true
+isNotDate(new Date())        // false
+isRegExp(new RegExp(''))     // true
+isNotRegExp(new RegExp(''))  // false
+isEqual(1)(1)                // true
 ```

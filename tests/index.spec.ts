@@ -22,7 +22,9 @@ import {
     isTruthy,
     isFalsy,
     isDate,
+    isNotDate,
     isRegExp,
+    isNotRegExp,
     isEqual
 } from '../src';
 
@@ -326,9 +328,37 @@ describe('isDate', () => {
     );
 });
 
+describe('isNotDate', () => {
+    expects(false)(isNotDate)(new Date());
+    expects(true)(isNotDate)(
+        ...arrays,
+        ...strings,
+        ...objects,
+        ...functions,
+        ...booleans,
+        ...numbers,
+        undefined,
+        null
+    );
+});
+
 describe('isRegExp', () => {
     expects(true)(isRegExp)(new RegExp(''));
     expects(false)(isRegExp)(
+        ...arrays,
+        ...strings,
+        ...objects,
+        ...functions,
+        ...booleans,
+        ...numbers,
+        undefined,
+        null
+    );
+});
+
+describe('isNotRegExp', () => {
+    expects(false)(isNotRegExp)(new RegExp(''));
+    expects(true)(isNotRegExp)(
         ...arrays,
         ...strings,
         ...objects,
