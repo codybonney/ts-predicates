@@ -249,27 +249,49 @@ export const isNotRegExp = value => !(value instanceof RegExp);
  *        ({ a: { b: 2 }})  // false
  */
 export const isEqual = a => b => {
-    if (a === b) { return true; }
-    if (isRegExp(a) !== isRegExp(b)) { return false; }
-    if (isRegExp(a) && isRegExp(b)) { return a.toString() == b.toString(); }
-    if (isDate(a) !== isDate(b)) { return false; }
-    if (isDate(a) && isDate(b)) { return a.getTime() === b.getTime(); }
-    if (isArray(a) !== isArray(b)) { return false; }
+    if (a === b) {
+        return true;
+    }
+    if (isRegExp(a) !== isRegExp(b)) {
+        return false;
+    }
+    if (isRegExp(a) && isRegExp(b)) {
+        return a.toString() === b.toString();
+    }
+    if (isDate(a) !== isDate(b)) {
+        return false;
+    }
+    if (isDate(a) && isDate(b)) {
+        return a.getTime() === b.getTime();
+    }
+    if (isArray(a) !== isArray(b)) {
+        return false;
+    }
     if (isArray(a) && isArray(b)) {
-        if (!isEqual(a.length)(b.length)) { return false; }
+        if (!isEqual(a.length)(b.length)) {
+            return false;
+        }
         for (let i = a.length; i-- !== 0;) {
-            if (!isEqual(a[i])(b[i])) { return false; }
+            if (!isEqual(a[i])(b[i])) {
+                return false;
+            }
         }
         return true;
     }
     if (isObject(a) && isObject(b)) {
-        if (!isEqual(Object.keys(a).length)(Object.keys(b).length)) { return false; }
+        if (!isEqual(Object.keys(a).length)(Object.keys(b).length)) {
+            return false;
+        }
         for (let i = Object.keys(a).length; i-- !== 0;) {
-            if (!Object.prototype.hasOwnProperty.call(b, Object.keys(a)[i])) { return false; }
+            if (!Object.prototype.hasOwnProperty.call(b, Object.keys(a)[i])) {
+                return false;
+            }
         }
         for (let i = Object.keys(a).length; i-- !== 0;) {
             let key = Object.keys(a)[i];
-            if (!isEqual(a[key])(b[key])) { return false; }
+            if (!isEqual(a[key])(b[key])) {
+                return false;
+            }
         }
         return true;
     }
