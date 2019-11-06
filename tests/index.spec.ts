@@ -25,6 +25,8 @@ import {
     isNotDate,
     isRegExp,
     isNotRegExp,
+    isSymbol,
+    isNotSymbol,
     isEqual,
     isNotEqual
 } from '../src';
@@ -366,6 +368,38 @@ describe('isNotRegExp', () => {
         ...functions,
         ...booleans,
         ...numbers,
+        undefined,
+        null
+    );
+});
+
+describe('isSymbol', () => {
+    expects(true)(isSymbol)(Symbol());
+    expects(false)(isSymbol)(
+        ...arrays,
+        ...strings,
+        ...objects,
+        ...functions,
+        ...booleans,
+        ...numbers,
+        new RegExp(''),
+        new Date(),
+        undefined,
+        null
+    );
+});
+
+describe('isNotSymbol', () => {
+    expects(false)(isNotSymbol)(Symbol());
+    expects(true)(isNotSymbol)(
+        ...arrays,
+        ...strings,
+        ...objects,
+        ...functions,
+        ...booleans,
+        ...numbers,
+        new RegExp(''),
+        new Date(),
         undefined,
         null
     );

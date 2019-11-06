@@ -240,6 +240,26 @@ export const isRegExp = (value): value is RegExp => value instanceof RegExp;
 export const isNotRegExp = value => !(value instanceof RegExp);
 
 /**
+ * return true if a given value is of type Symbol
+ *
+ * examples:
+ * isSymbol(0)           // false
+ * isSymbol(undefined)   // false
+ * isSymbol(Symbol())    // true
+ */
+export const isSymbol = value => typeOf(value) === 'symbol';
+
+/**
+ * return true if a given value is not of type Symbol
+ *
+ * examples:
+ * isNotSymbol(0)           // true
+ * isNotSymbol(undefined)   // true
+ * isNotSymbol(Symbol())    // false
+ */
+export const isNotSymbol = value => typeOf(value) !== 'symbol';
+
+/**
  * return true if a given value deeply equals another value.
  *
  * examples:
