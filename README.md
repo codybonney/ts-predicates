@@ -25,6 +25,7 @@ import {
     isNotNull,
     isObject,
     isNotObject,
+    isPlainObject,
     isArray,
     isNotArray,
     isEmptyArray,
@@ -57,6 +58,7 @@ isNull(null)                 // true
 isNotNull(null)              // false
 isObject({})                 // true
 isNotObject({})              // false
+isPlainObject(new Array())   // false
 isArray([])                  // true
 isNotArray([])               // false
 isEmptyArray([])             // true

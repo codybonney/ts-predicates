@@ -11,6 +11,7 @@ import {
     isNotNull,
     isObject,
     isNotObject,
+    isPlainObject,
     isArray,
     isNotArray,
     isEmptyArray,
@@ -34,7 +35,7 @@ import {
 // arrays of values to be used as test case inputs
 const emptyFunction = () => {};
 const objects       = [{}, {'foo': 'bar'}];
-const arrays        = [[], [1,2,3]];
+const arrays        = [[], [1,2,3], new Array()];
 const functions     = [emptyFunction];
 const strings       = ['foo', ''];
 const numbers       = [1, 3.14];
@@ -175,6 +176,20 @@ describe('isNotObject', () => {
         ...numbers,
         ...booleans,
         undefined,
+        null
+    );
+});
+
+describe('isPlainObject', () => {
+    expects(true)(isPlainObject)(...objects);
+    expects(false)(isPlainObject)(
+        ...strings,
+        ...arrays,
+        ...functions,
+        ...numbers,
+        ...booleans,
+        undefined,
+        new Date(),
         null
     );
 });
