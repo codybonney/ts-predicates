@@ -18,7 +18,7 @@ export const isBoolean = (value): value is boolean => typeOf(value) === 'boolean
  * isNotBoolean(false) // false
  * isNotBoolean('no')  // true
  */
-export const isNotBoolean = value => !isBoolean(value);
+export const isNotBoolean = <T>(value: T): value is Exclude<T, boolean> => !isBoolean(value);
 
 
 /**
@@ -28,7 +28,7 @@ export const isNotBoolean = value => !isBoolean(value);
  * isString(5)     // false
  * isString('yes') // true
  */
-export const isString = (value): value is string => typeOf(value) === 'string';
+export const isString = (value: unknown): value is string => typeOf(value) === 'string';
 
 /**
  * return true if a given value is not of type string
@@ -37,7 +37,7 @@ export const isString = (value): value is string => typeOf(value) === 'string';
  * isNotString(5)     // true
  * isNotString('yes') // false
  */
-export const isNotString = value => !isString(value);
+export const isNotString = <T>(value: T): value is Exclude<T, string> => !isString(value);
 
 /**
  * return true if a given value is not of type undefined
@@ -46,7 +46,7 @@ export const isNotString = value => !isString(value);
  * isDefined(0)         // true
  * isDefined(undefined) // false
  */
-export const isDefined = value => typeOf(value) !== 'undefined';
+export const isDefined = <T>(value: T): value is Exclude<T, undefined> => typeOf(value) !== 'undefined';
 
 /**
  * return true if a given value is of type undefined
@@ -75,7 +75,7 @@ export const isNull = (value): value is null => typeOf(value) === 'null';
  * isNotNull(undefined) // true
  * isNotNull(null)      // false
  */
-export const isNotNull = value => !isNull(value);
+export const isNotNull = <T>(value: T): value is Exclude<T, null> => !isNull(value);
 
 /**
  * return true if a given value is of type object
@@ -95,7 +95,7 @@ export const isObject = (value): value is object => typeOf(value) === 'object';
  * isNotObject(undefined) // true
  * isNotObject({})        // false
  */
-export const isNotObject = value => !isObject(value);
+export const isNotObject = <T>(value: T): value is Exclude<T, object> => !isObject(value);
 
 /**
  * return true if a given value is of type object, is not a special class, and does not have other prototypes
@@ -118,7 +118,7 @@ export const isPlainObject = (value): value is object =>
  * isNotPlainObject(Date())    // true
  * isNotPlainObject({})        // false
  */
-export const isNotPlainObject = value => !isPlainObject(value);
+export const isNotPlainObject = <T>(value: T): value is Exclude<T, object> => !isPlainObject(value);
 
 /**
  * return true if a given value is of type array
@@ -138,7 +138,7 @@ export const isArray = <T>(value: unknown): value is T[] => typeOf(value) === 'a
  * isNotArray(undefined) // true
  * isNotArray([])        // false
  */
-export const isNotArray = value => !isArray(value);
+export const isNotArray = <T>(value: T): value is Exclude<T, Array<any>> => !isArray(value);
 
 /**
  * return true if a given value is an empty array
@@ -240,7 +240,7 @@ export const isDate = (value): value is Date => value instanceof Date;
  * isNotDate(undefined)   // true
  * isNotDate(new Date())  // false
  */
-export const isNotDate = value => !isDate(value);
+export const isNotDate = <T>(value: T): value is Exclude<T, Date> => !isDate(value);
 
 /**
  * return true if a given value is of type RegExp
@@ -260,7 +260,7 @@ export const isRegExp = (value): value is RegExp => value instanceof RegExp;
  * isRegExp(undefined)     // false
  * isRegExp(new RegExp())  // true
  */
-export const isNotRegExp = value => !isRegExp(value);
+export const isNotRegExp = <T>(value: T): value is Exclude<T, RegExp> => !isRegExp(value);
 
 /**
  * return true if a given value is of type Symbol
@@ -280,7 +280,7 @@ export const isSymbol = (value): value is symbol => typeOf(value) === 'symbol';
  * isNotSymbol(undefined)   // true
  * isNotSymbol(Symbol())    // false
  */
-export const isNotSymbol = value => !isSymbol(value);
+export const isNotSymbol = <T>(value: T): value is Exclude<T, symbol> => !isSymbol(value);
 
 /**
  * return true if a given value deeply equals another value.
@@ -350,4 +350,4 @@ export const isEqual = <T>(a: T) => (b): b is T => {
  * isEqual({ a: { b: 1 }})
  *        ({ a: { b: 2 }})  // true
  */
-export const isNotEqual = a => b => !isEqual(a)(b);
+export const isNotEqual = <T>(a: T) => <T2>(b: T2): b is T2=> !isEqual(a)(b);
