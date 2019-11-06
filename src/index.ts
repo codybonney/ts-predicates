@@ -114,9 +114,9 @@ export const isPlainObject = value =>
  * return true if a given value is not of type object, is a special object class, or has other prototypes
  *
  * examples:
- * isPlainObject(0)         // false
- * isPlainObject(Date())    // false
- * isPlainObject({})        // true
+ * isNotPlainObject(0)         // true
+ * isNotPlainObject(Date())    // true
+ * isNotPlainObject({})        // false
  */
 export const isNotPlainObject = value =>
     typeOf(value) !== 'object'
