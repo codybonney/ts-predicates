@@ -131,7 +131,7 @@ export const isNotPlainObject = value =>
  * isArray(undefined) // false
  * isArray([])        // true
  */
-export const isArray = (value): value is [] => typeOf(value) === 'array';
+export const isArray = <T>(value: unknown): value is T[] => typeOf(value) === 'array';
 
 /**
  * return true if a given value is not of type array
@@ -152,7 +152,7 @@ export const isNotArray = value => typeOf(value) !== 'array';
  * isEmptyArray([1,2,3])   // false
  * isEmptyArray([])        // true
  */
-export const isEmptyArray = (value): value is [] => typeOf(value) === 'array' && !value.length;
+export const isEmptyArray = <T>(value: unknown): value is T[] => typeOf(value) === 'array' && !(value as T[]).length;
 
 /**
  * return true if a given value is a non-empty array
@@ -163,7 +163,7 @@ export const isEmptyArray = (value): value is [] => typeOf(value) === 'array' &&
  * isNonEmptyArray([])        // false
  * isNonEmptyArray([1,2,3])   // true
  */
-export const isNonEmptyArray = (value): value is [] => typeOf(value) === 'array' && !!value.length;
+export const isNonEmptyArray = <T>(value: unknown): value is T[] => typeOf(value) === 'array' && !!(value as T[]).length;
 
 /**
  * return true if a given value is a function
