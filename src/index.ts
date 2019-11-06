@@ -111,6 +111,19 @@ export const isPlainObject = value =>
     && Object.getPrototypeOf(value) === Object.prototype;
 
 /**
+ * return true if a given value is not of type object, is a special object class, or has other prototypes
+ *
+ * examples:
+ * isPlainObject(0)         // false
+ * isPlainObject(Date())    // false
+ * isPlainObject({})        // true
+ */
+export const isNotPlainObject = value =>
+    typeOf(value) !== 'object'
+    || value.constructor !== Object
+    || Object.getPrototypeOf(value) !== Object.prototype;
+
+/**
  * return true if a given value is of type array
  *
  * examples:

@@ -12,6 +12,7 @@ import {
     isObject,
     isNotObject,
     isPlainObject,
+    isNotPlainObject,
     isArray,
     isNotArray,
     isEmptyArray,
@@ -207,6 +208,21 @@ describe('isNotObject', () => {
 describe('isPlainObject', () => {
     expects(true)(isPlainObject)(...objects);
     expects(false)(isPlainObject)(
+        ...strings,
+        ...arrays,
+        ...functions,
+        ...numbers,
+        ...booleans,
+        undefined,
+        new Date(),
+        new RegExp(/foo/),
+        null
+    );
+});
+
+describe('isNotPlainObject', () => {
+    expects(false)(isNotPlainObject)(...objects);
+    expects(true)(isNotPlainObject)(
         ...strings,
         ...arrays,
         ...functions,
