@@ -58,6 +58,8 @@ describe('isBoolean', () => {
         ...functions,
         ...strings,
         ...numbers,
+        new Date(),
+        new RegExp(/foo/),
         undefined,
         null
     );
@@ -71,6 +73,8 @@ describe('isNotBoolean', () => {
         ...functions,
         ...strings,
         ...numbers,
+        new Date(),
+        new RegExp(/foo/),
         undefined,
         null
     );
@@ -84,6 +88,8 @@ describe('isString', () => {
         ...functions,
         ...booleans,
         ...numbers,
+        new Date(),
+        new RegExp(/foo/),
         undefined,
         null
     );
@@ -97,6 +103,8 @@ describe('isNotString', () => {
         ...functions,
         ...booleans,
         ...numbers,
+        new Date(),
+        new RegExp(/foo/),
         undefined,
         null
     );
@@ -110,6 +118,8 @@ describe('isDefined', () => {
         ...functions,
         ...numbers,
         ...booleans,
+        new Date(),
+        new RegExp(/foo/),
         null
     );
     expects(false)(isDefined)(undefined);
@@ -124,6 +134,8 @@ describe('isUndefined', () => {
         ...functions,
         ...numbers,
         ...booleans,
+        new Date(),
+        new RegExp(/foo/),
         null
     );
 });
@@ -137,6 +149,8 @@ describe('isNull', () => {
         ...functions,
         ...numbers,
         ...booleans,
+        new Date(),
+        new RegExp(/foo/),
         undefined
     );
 });
@@ -150,12 +164,18 @@ describe('isNotNull', () => {
         ...functions,
         ...numbers,
         ...booleans,
+        new Date(),
+        new RegExp(/foo/),
         undefined
     );
 });
 
 describe('isObject', () => {
-    expects(true)(isObject)(...objects);
+    expects(true)(isObject)(
+        ...objects,
+        new Date(),
+        new RegExp('')
+    );
     expects(false)(isObject)(
         ...strings,
         ...arrays,
@@ -168,7 +188,11 @@ describe('isObject', () => {
 });
 
 describe('isNotObject', () => {
-    expects(false)(isNotObject)(...objects);
+    expects(false)(isNotObject)(
+        ...objects,
+        new Date(),
+        new RegExp(/foo/)
+    );
     expects(true)(isNotObject)(
         ...strings,
         ...arrays,
@@ -190,6 +214,7 @@ describe('isPlainObject', () => {
         ...booleans,
         undefined,
         new Date(),
+        new RegExp(/foo/),
         null
     );
 });
@@ -202,6 +227,8 @@ describe('isArray', () => {
         ...functions,
         ...numbers,
         ...booleans,
+        new Date(),
+        new RegExp(/foo/),
         undefined,
         null
     );
@@ -215,6 +242,8 @@ describe('isNotArray', () => {
         ...functions,
         ...numbers,
         ...booleans,
+        new Date(),
+        new RegExp(/foo/),
         undefined,
         null
     );
@@ -229,6 +258,8 @@ describe('isEmptyArray', () => {
         ...functions,
         ...numbers,
         ...booleans,
+        new Date(),
+        new RegExp(/foo/),
         undefined,
         null
     );
@@ -243,6 +274,8 @@ describe('isNonEmptyArray', () => {
         ...functions,
         ...numbers,
         ...booleans,
+        new Date(),
+        new RegExp(/foo/),
         undefined,
         null
     );
@@ -256,6 +289,8 @@ describe('isFunction', () => {
         ...objects,
         ...numbers,
         ...booleans,
+        new Date(),
+        new RegExp(/foo/),
         undefined,
         null
     );
@@ -269,6 +304,8 @@ describe('isNotFunction', () => {
         ...objects,
         ...numbers,
         ...booleans,
+        new Date(),
+        new RegExp(/foo/),
         undefined,
         null
     );
@@ -281,6 +318,8 @@ describe('isTrue', () => {
         ...strings,
         ...objects,
         ...numbers,
+        new Date(),
+        new RegExp(/foo/),
         undefined,
         null,
         false
@@ -294,6 +333,8 @@ describe('isFalse', () => {
         ...strings,
         ...objects,
         ...numbers,
+        new Date(),
+        new RegExp(/foo/),
         undefined,
         null,
         true
@@ -341,6 +382,7 @@ describe('isDate', () => {
         ...functions,
         ...booleans,
         ...numbers,
+        new RegExp(/foo/),
         undefined,
         null
     );
@@ -355,6 +397,7 @@ describe('isNotDate', () => {
         ...functions,
         ...booleans,
         ...numbers,
+        new RegExp(/foo/),
         undefined,
         null
     );
@@ -369,6 +412,7 @@ describe('isRegExp', () => {
         ...functions,
         ...booleans,
         ...numbers,
+        new Date(),
         undefined,
         null
     );
@@ -383,6 +427,7 @@ describe('isNotRegExp', () => {
         ...functions,
         ...booleans,
         ...numbers,
+        new Date(),
         undefined,
         null
     );
