@@ -294,7 +294,7 @@ export const isNotSymbol = value => typeOf(value) !== 'symbol';
  * isEqual({ a: { b: 1 }})
  *        ({ a: { b: 2 }})  // false
  */
-export const isEqual = a => b => {
+export const isEqual = <T>(a: T) => (b): b is T => {
     if (a === b) {
         return true;
     }
