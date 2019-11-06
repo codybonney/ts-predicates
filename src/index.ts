@@ -18,7 +18,7 @@ export const isBoolean = (value): value is boolean => typeOf(value) === 'boolean
  * isNotBoolean(false) // false
  * isNotBoolean('no')  // true
  */
-export const isNotBoolean = value => typeOf(value) !== 'boolean';
+export const isNotBoolean = value => !isBoolean(value);
 
 
 /**
@@ -37,7 +37,7 @@ export const isString = (value): value is string => typeOf(value) === 'string';
  * isNotString(5)     // true
  * isNotString('yes') // false
  */
-export const isNotString = value => typeOf(value) !== 'string';
+export const isNotString = value => !isString(value);
 
 /**
  * return true if a given value is not of type undefined
@@ -55,7 +55,7 @@ export const isDefined = value => typeOf(value) !== 'undefined';
  * isUndefined(0)         // false
  * isUndefined(undefined) // true
  */
-export const isUndefined = (value): value is undefined => typeOf(value) === 'undefined';
+export const isUndefined = (value): value is undefined => !isDefined(value);
 
 /**
  * return true if a given value is of type null
@@ -75,7 +75,7 @@ export const isNull = (value): value is null => typeOf(value) === 'null';
  * isNotNull(undefined) // true
  * isNotNull(null)      // false
  */
-export const isNotNull = value => typeOf(value) !== 'null';
+export const isNotNull = value => !isNull(value);
 
 /**
  * return true if a given value is of type object
@@ -95,7 +95,7 @@ export const isObject = (value): value is object => typeOf(value) === 'object';
  * isNotObject(undefined) // true
  * isNotObject({})        // false
  */
-export const isNotObject = value => typeOf(value) !== 'object';
+export const isNotObject = value => !isObject(value);
 
 /**
  * return true if a given value is of type object, is not a special class, and does not have other prototypes
@@ -118,10 +118,7 @@ export const isPlainObject = (value): value is object =>
  * isNotPlainObject(Date())    // true
  * isNotPlainObject({})        // false
  */
-export const isNotPlainObject = value =>
-    typeOf(value) !== 'object'
-    || value.constructor !== Object
-    || Object.getPrototypeOf(value) !== Object.prototype;
+export const isNotPlainObject = value => !isPlainObject(value);
 
 /**
  * return true if a given value is of type array
@@ -141,7 +138,7 @@ export const isArray = <T>(value: unknown): value is T[] => typeOf(value) === 'a
  * isNotArray(undefined) // true
  * isNotArray([])        // false
  */
-export const isNotArray = value => typeOf(value) !== 'array';
+export const isNotArray = value => !isArray(value);
 
 /**
  * return true if a given value is an empty array
@@ -152,7 +149,7 @@ export const isNotArray = value => typeOf(value) !== 'array';
  * isEmptyArray([1,2,3])   // false
  * isEmptyArray([])        // true
  */
-export const isEmptyArray = <T>(value: unknown): value is T[] => typeOf(value) === 'array' && !(value as T[]).length;
+export const isEmptyArray = <T>(value: unknown): value is T[] => isArray(value) && !value.length;
 
 /**
  * return true if a given value is a non-empty array
@@ -163,7 +160,7 @@ export const isEmptyArray = <T>(value: unknown): value is T[] => typeOf(value) =
  * isNonEmptyArray([])        // false
  * isNonEmptyArray([1,2,3])   // true
  */
-export const isNonEmptyArray = <T>(value: unknown): value is T[] => typeOf(value) === 'array' && !!(value as T[]).length;
+export const isNonEmptyArray = <T>(value: unknown): value is T[] => isArray(value) && !!value.length;
 
 /**
  * return true if a given value is a function
@@ -183,7 +180,7 @@ export const isFunction = (value): value is Function => typeOf(value) === 'funct
  * isNotFunction(undefined) // true
  * isNotFunction(() => {})  // false
  */
-export const isNotFunction = value => typeOf(value) !== 'function';
+export const isNotFunction = value => !isFunction(value);
 
 /**
  * return true if a given value is true
@@ -243,7 +240,7 @@ export const isDate = (value): value is Date => value instanceof Date;
  * isNotDate(undefined)   // true
  * isNotDate(new Date())  // false
  */
-export const isNotDate = value => !(value instanceof Date);
+export const isNotDate = value => !isDate(value);
 
 /**
  * return true if a given value is of type RegExp
@@ -263,7 +260,7 @@ export const isRegExp = (value): value is RegExp => value instanceof RegExp;
  * isRegExp(undefined)     // false
  * isRegExp(new RegExp())  // true
  */
-export const isNotRegExp = value => !(value instanceof RegExp);
+export const isNotRegExp = value => !isRegExp(value);
 
 /**
  * return true if a given value is of type Symbol
@@ -283,7 +280,7 @@ export const isSymbol = (value): value is symbol => typeOf(value) === 'symbol';
  * isNotSymbol(undefined)   // true
  * isNotSymbol(Symbol())    // false
  */
-export const isNotSymbol = value => typeOf(value) !== 'symbol';
+export const isNotSymbol = value => !isSymbol(value);
 
 /**
  * return true if a given value deeply equals another value.
