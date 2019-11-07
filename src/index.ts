@@ -85,7 +85,7 @@ export const isNotNull = <T>(value: T): value is Exclude<T, null> => !isNull(val
  * isObject(undefined) // false
  * isObject({})        // true
  */
-export const isObject = (value): value is object => typeOf(value) === 'object';
+export const isObject = (value): value is { [key: string]: any } => typeOf(value) === 'object';
 
 /**
  * return true if a given value is not of type object
@@ -105,7 +105,7 @@ export const isNotObject = <T>(value: T): value is Exclude<T, object> => !isObje
  * isPlainObject(Date())    // false
  * isPlainObject({})        // true
  */
-export const isPlainObject = (value): value is object =>
+export const isPlainObject = (value): value is { [key: string]: any }  =>
     typeOf(value) === 'object'
     && value.constructor === Object
     && Object.getPrototypeOf(value) === Object.prototype;
