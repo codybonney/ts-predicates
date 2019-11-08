@@ -118,7 +118,7 @@ export const isPlainObject = (value): value is { [key: string]: any }  =>
  * isNotPlainObject(Date())    // true
  * isNotPlainObject({})        // false
  */
-export const isNotPlainObject = <T>(value: T): value is Exclude<T, object> => !isPlainObject(value);
+export const isNotPlainObject = (value) => !isPlainObject(value);
 
 /**
  * return true if a given value is of type array
