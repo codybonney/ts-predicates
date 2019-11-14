@@ -20,7 +20,6 @@ export const isBoolean = (value): value is boolean => typeOf(value) === 'boolean
  */
 export const isNotBoolean = <T>(value: T): value is Exclude<T, boolean> => !isBoolean(value);
 
-
 /**
  * return true if a given value is of type string
  *
@@ -105,7 +104,7 @@ export const isNotObject = <T>(value: T): value is Exclude<T, object> => !isObje
  * isPlainObject(Date())    // false
  * isPlainObject({})        // true
  */
-export const isPlainObject = (value): value is { [key: string]: any }  =>
+export const isPlainObject = (value): value is { [key: string]: any } =>
     typeOf(value) === 'object'
     && value.constructor === Object
     && Object.getPrototypeOf(value) === Object.prototype;
