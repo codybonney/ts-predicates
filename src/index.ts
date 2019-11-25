@@ -39,6 +39,24 @@ export const isString = (value: unknown): value is string => typeOf(value) === '
 export const isNotString = <T>(value: T): value is Exclude<T, string> => !isString(value);
 
 /**
+ * return true if a given value is of type number
+ *
+ * examples:
+ * isNumber(5)     // true
+ * isNumber('yes') // false
+ */
+export const isNumber = (value: unknown): value is number => typeOf(value) === 'number';
+
+/**
+ * return true if a given value is not of type number
+ *
+ * examples:
+ * isNumber(5)     // true
+ * isNumber('yes') // false
+ */
+export const isNotNumber = <T>(value: T): value is Exclude<T, number> => !isNumber(value);
+
+/**
  * return true if a given value is not of type undefined
  *
  * examples:

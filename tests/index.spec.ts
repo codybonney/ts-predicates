@@ -5,6 +5,8 @@ import {
     isNotBoolean,
     isString,
     isNotString,
+    isNumber,
+    isNotNumber,
     isDefined,
     isUndefined,
     isNull,
@@ -104,6 +106,36 @@ describe('isNotString', () => {
         ...functions,
         ...booleans,
         ...numbers,
+        new Date(),
+        new RegExp(/foo/),
+        undefined,
+        null
+    );
+});
+
+describe('isNumber', () => {
+    expects(true)(isNumber)(...numbers);
+    expects(false)(isNumber)(
+        ...objects,
+        ...arrays,
+        ...functions,
+        ...booleans,
+        ...strings,
+        new Date(),
+        new RegExp(/foo/),
+        undefined,
+        null
+    );
+});
+
+describe('isNotNumber', () => {
+    expects(false)(isNotNumber)(...numbers);
+    expects(true)(isNotNumber)(
+        ...objects,
+        ...arrays,
+        ...functions,
+        ...booleans,
+        ...strings,
         new Date(),
         new RegExp(/foo/),
         undefined,

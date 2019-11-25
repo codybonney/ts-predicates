@@ -19,6 +19,8 @@ import {
     isNotBoolean,
     isString,
     isNotString,
+    isNumber,
+    isNotNumber,
     isDefined,
     isUndefined,
     isNull,
@@ -53,6 +55,8 @@ isBoolean({})                  // false
 isNotBoolean({})               // true
 isString('foo')                // true
 isNotString('foo')             // false
+isNumber(5)                    // true
+isNotNumber('foo')             // true
 isDefined([])                  // true
 isUndefined({})                // false
 isNull(null)                   // true
