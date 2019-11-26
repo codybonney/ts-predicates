@@ -367,4 +367,4 @@ export const isEqual = <T>(a: T) => (b): b is T => {
  * isEqual({ a: { b: 1 }})
  *        ({ a: { b: 2 }})  // true
  */
-export const isNotEqual = <T>(a: T) => <T2>(b: T2): b is T2=> !isEqual(a)(b);
+export const isNotEqual = <T>(a: T) => <T2>(b: T2): b is T2 => !isEqual(a)(b);
